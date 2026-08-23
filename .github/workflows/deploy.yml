@@ -29,6 +29,11 @@ jobs:
           npx tsc --noEmit
           npm test
 
+      - name: Check build env
+        run: |
+          echo "VITE_SUPABASE_URL set: ${{ secrets.VITE_SUPABASE_URL != '' }}"
+          echo "VITE_SUPABASE_PUBLISHABLE_KEY set: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY != '' }}"
+
       - name: Build
         run: npm run build
         env:
