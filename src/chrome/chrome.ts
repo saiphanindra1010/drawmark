@@ -336,7 +336,7 @@ function buildSidebar(rail: HTMLElement, onAction: (action: ChromeAction) => voi
   rail.className = 'panel sidebar'
   const brand = document.createElement('div')
   brand.className = 'brand'
-  brand.innerHTML = `<span class="brand-mark"></span><span class="brand-name">Mermade</span>`
+  brand.innerHTML = `<span class="brand-mark"></span><span class="brand-name">Drawmark</span>`
   brand.append(themePicker())
   rail.append(brand)
   rail.append(sectionLabel('Diagram'))

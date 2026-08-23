@@ -2,7 +2,7 @@ import { nextId } from './ids.ts'
 import { scene } from './scene.ts'
 import type { DiagramEdge, DiagramGroup, DiagramNode, SceneGraph } from './types.ts'
 
-const PREFIX = '%%mermade-clip:'
+const PREFIX = '%%drawmark-clip:'
 const PASTE_OFFSET = 24
 
 export type ClipboardGraph = SceneGraph

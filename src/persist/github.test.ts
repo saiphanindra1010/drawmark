@@ -59,49 +59,49 @@ describe('canPushToRepo', () => {
 
 describe('savePathFor', () => {
   it('keeps the existing GitHub path when the title changes', () => {
-    expect(savePathFor('Payments', 'mermade/untitled.md')).toBe('mermade/untitled.md')
+    expect(savePathFor('Payments', 'drawmark/untitled.md')).toBe('drawmark/untitled.md')
   })
 
   it('uses the title slug for a new diagram', () => {
-    expect(savePathFor('Order Service')).toBe('mermade/order-service.md')
+    expect(savePathFor('Order Service')).toBe('drawmark/order-service.md')
   })
 })
 
 describe('nextGithubPath', () => {
-  it('writes new diagrams under mermade/', () => {
-    expect(githubPathForTitle('Diagram')).toBe('mermade/diagram.md')
-    expect(nextGithubPath('Diagram')).toEqual({ path: 'mermade/diagram.md' })
+  it('writes new diagrams under drawmark/', () => {
+    expect(githubPathForTitle('Diagram')).toBe('drawmark/diagram.md')
+    expect(nextGithubPath('Diagram')).toEqual({ path: 'drawmark/diagram.md' })
   })
 
   it('renames when the diagram title changes', () => {
-    expect(nextGithubPath('diagram', 'mermade/ddddd.md')).toEqual({
-      path: 'mermade/diagram.md',
-      previous: 'mermade/ddddd.md',
+    expect(nextGithubPath('diagram', 'drawmark/ddddd.md')).toEqual({
+      path: 'drawmark/diagram.md',
+      previous: 'drawmark/ddddd.md',
     })
   })
 
   it('keeps the path when the title slug is unchanged', () => {
-    expect(nextGithubPath('Diagram', 'mermade/diagram.md')).toEqual({ path: 'mermade/diagram.md' })
+    expect(nextGithubPath('Diagram', 'drawmark/diagram.md')).toEqual({ path: 'drawmark/diagram.md' })
   })
 })
 
 describe('repoStorageKey', () => {
   it('scopes the remembered repo to the signed-in GitHub user', () => {
-    expect(repoStorageKey('Octocat')).toBe('mermade.github.repo.octocat')
-    expect(repoStorageKey('')).toBe('mermade.github.repo')
+    expect(repoStorageKey('Octocat')).toBe('drawmark.github.repo.octocat')
+    expect(repoStorageKey('')).toBe('drawmark.github.repo')
   })
 })
 
 describe('contentsApiPath', () => {
   it('encodes each path segment', () => {
-    expect(contentsApiPath('mermade/order service.md')).toBe('mermade/order%20service.md')
+    expect(contentsApiPath('drawmark/order service.md')).toBe('drawmark/order%20service.md')
   })
 })
 
 describe('lastOpenedStorageKey', () => {
   it('scopes the last diagram to the GitHub user and repo', () => {
     expect(lastOpenedStorageKey('Octocat', 'Celigo', 'Docs')).toBe(
-      'mermade.github.last.octocat.celigo/docs',
+      'drawmark.github.last.octocat.celigo/docs',
     )
   })
 })

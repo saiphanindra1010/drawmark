@@ -1,10 +1,10 @@
 export const GITHUB_API = 'https://api.github.com'
-export const DIAGRAM_FOLDER = 'mermade'
-export const REPO_KEY = 'mermade.github.repo'
-export const LAST_OPEN_KEY = 'mermade.github.last'
-export const THEME_KEY = 'mermade.theme'
+export const DIAGRAM_FOLDER = 'drawmark'
+export const REPO_KEY = 'drawmark.github.repo'
+export const LAST_OPEN_KEY = 'drawmark.github.last'
+export const THEME_KEY = 'drawmark.theme'
 export const AUTO_SAVE_MS = 2000
-const LEGACY_SESSION_KEY = 'mermade.github'
+const LEGACY_SESSION_KEY = 'drawmark.github'
 
 function readEnv(
   name: 'VITE_SUPABASE_URL' | 'VITE_SUPABASE_PUBLISHABLE_KEY' | 'VITE_SUPABASE_ANON_KEY',

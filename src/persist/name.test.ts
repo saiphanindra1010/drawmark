@@ -55,7 +55,7 @@ describe('conflictingName', () => {
   })
 
   it('ignores the file currently being edited', () => {
-    expect(conflictingName('Order Service', ['order-service'], 'mermade/order-service.md')).toBeNull()
+    expect(conflictingName('Order Service', ['order-service'], 'drawmark/order-service.md')).toBeNull()
   })
 
   it('treats headings and file names as the same slug', () => {

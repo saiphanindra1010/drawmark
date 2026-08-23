@@ -347,7 +347,7 @@ async function putGithubFile(args: {
   overwrite?: boolean
 }): Promise<DocumentFile> {
   const body: Record<string, string> = {
-    message: `mermade: save ${args.title}`,
+    message: `drawmark: save ${args.title}`,
     content: encodeBase64(args.markdown),
     branch: args.repo.branch,
   }
@@ -403,7 +403,7 @@ async function deleteGithubFile(args: {
     await api(url, args.token, {
       method: 'DELETE',
       body: JSON.stringify({
-        message: `mermade: ${action} ${args.title}`,
+        message: `drawmark: ${action} ${args.title}`,
         sha: args.sha,
         branch: args.repo.branch,
       }),
@@ -428,7 +428,7 @@ async function deleteGithubFile(args: {
       await api(url, args.token, {
         method: 'DELETE',
         body: JSON.stringify({
-          message: `mermade: ${action} ${args.title}`,
+          message: `drawmark: ${action} ${args.title}`,
           sha: latest.sha,
           branch: args.repo.branch,
         }),

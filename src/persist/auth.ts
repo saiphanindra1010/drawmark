@@ -2,7 +2,7 @@ import { createClient, type Session, type SupabaseClient, type User } from '@sup
 import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL, supabaseConfigured } from './config.ts'
 import { notifyChrome } from '../scene/scene.ts'
 
-const PROVIDER_TOKEN_KEY = 'mermade.gh.provider'
+const PROVIDER_TOKEN_KEY = 'drawmark.gh.provider'
 
 let client: SupabaseClient | null = null
 let session: Session | null = null

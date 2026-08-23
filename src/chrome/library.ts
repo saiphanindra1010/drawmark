@@ -227,7 +227,7 @@ function repoPane(): HTMLElement {
   pane.className = 'library-body'
   const who = document.createElement('p')
   who.className = 'library-copy'
-  who.textContent = `Signed in as ${authLogin() || 'GitHub'}. Pick the repo that should hold mermade/*.md.`
+  who.textContent = `Signed in as ${authLogin() || 'GitHub'}. Pick the repo that should hold drawmark/*.md.`
   pane.append(who)
   pane.append(filterInput('Filter repositories'))
   if (loading) pane.append(statusLine('Loading repositories…'))
@@ -261,7 +261,7 @@ function diagramPane(): HTMLElement {
   const repo = githubRepo()
   const who = document.createElement('p')
   who.className = 'library-copy'
-  who.textContent = repo ? `${repo.owner}/${repo.name} · mermade/` : githubStatus()
+  who.textContent = repo ? `${repo.owner}/${repo.name} · drawmark/` : githubStatus()
   const hint = document.createElement('p')
   hint.className = 'library-copy'
   hint.textContent =
@@ -288,7 +288,7 @@ function diagramPane(): HTMLElement {
     list.append(diagramRow(file, file.path === current))
   }
   if (!loading && visibleDiagrams().length === 0) {
-    list.append(statusLine('No markdown files in mermade/ yet. Click New diagram to start one.'))
+    list.append(statusLine('No markdown files in drawmark/ yet. Click New diagram to start one.'))
   }
   pane.append(list)
   pane.append(footerActions(false))

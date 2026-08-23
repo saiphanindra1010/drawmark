@@ -88,7 +88,7 @@ function paint(): void {
   card.className = 'gate-card'
   const brand = document.createElement('div')
   brand.className = 'gate-brand'
-  brand.innerHTML = `<span class="brand-mark"></span><span class="brand-name">Mermade</span>`
+  brand.innerHTML = `<span class="brand-mark"></span><span class="brand-name">Drawmark</span>`
   card.append(brand)
 
   const title = document.createElement('h1')
@@ -129,7 +129,7 @@ function paint(): void {
     return
   }
 
-  copy.textContent = `Signed in as ${authLogin() || 'GitHub'}. Files go in mermade/*.md.`
+  copy.textContent = `Signed in as ${authLogin() || 'GitHub'}. Files go in drawmark/*.md.`
   card.append(title, copy)
   card.append(filterInput())
   if (loading) {

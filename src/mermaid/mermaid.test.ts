@@ -11,7 +11,7 @@ describe('architecture flowchart', () => {
     expect(src).toContain('subgraph')
     expect(src).toContain('-->|HTTPS|')
     expect(src).toContain('[(Postgres)]')
-    expect(src).not.toContain('%% mermade:')
+    expect(src).not.toContain('%% drawmark:')
   })
 
   it('round-trips architecture demo', () => {
@@ -46,7 +46,7 @@ describe('LLD round-trips', () => {
     expect(parsed.ok).toBe(true)
     if (!parsed.ok) return
     expect(parsed.graph.diagramType).toBe(type)
-    expect(src).toContain('%% mermade:')
+    expect(src).toContain('%% drawmark:')
     const labeled = graph.nodes.filter((n) => n.label)
     for (const n of labeled) {
       expect(parsed.graph.nodes.some((p) => p.label === n.label || p.id === n.label.replace(/\s+/g, '_'))).toBe(true)

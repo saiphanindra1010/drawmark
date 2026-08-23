@@ -1,6 +1,6 @@
 import type { DiagramGroup, DiagramNode, DiagramType, NodeKind, SceneGraph } from '../scene/types.ts'
 
-export type MermadeMeta = {
+export type DrawmarkMeta = {
   v: 1
   diagramType: DiagramType
   nodes: Record<
@@ -50,7 +50,7 @@ export function nodeGroups(graph: SceneGraph): Map<string, string> {
 
 export function appendMeta(lines: string[], graph: SceneGraph, assigned: Map<string, string>, groupIds: Map<string, string>, clean?: boolean): void {
   if (clean) return
-  const meta: MermadeMeta = { v: 1, diagramType: graph.diagramType, nodes: {}, groups: {}, edges: {} }
+  const meta: DrawmarkMeta = { v: 1, diagramType: graph.diagramType, nodes: {}, groups: {}, edges: {} }
   for (const n of graph.nodes) {
     const id = assigned.get(n.id)
     if (!id) continue
@@ -72,14 +72,14 @@ export function appendMeta(lines: string[], graph: SceneGraph, assigned: Map<str
   graph.edges.forEach((e, i) => {
     meta.edges![`e${i + 1}`] = { y: e.y, relation: e.relation, label: e.label, fromCard: e.fromCard, toCard: e.toCard }
   })
-  lines.push(`%% mermade:${JSON.stringify(meta)}`)
+  lines.push(`%% drawmark:${JSON.stringify(meta)}`)
 }
 
-export function extractMeta(text: string): MermadeMeta | null {
-  const m = /%% mermade:(\{.*\})\s*$/m.exec(text)
+export function extractMeta(text: string): DrawmarkMeta | null {
+  const m = /%% drawmark:(\{.*\})\s*$/m.exec(text)
   if (!m?.[1]) return null
   try {
-    const parsed = JSON.parse(m[1]) as MermadeMeta
+    const parsed = JSON.parse(m[1]) as DrawmarkMeta
     if (parsed.v !== 1 || !parsed.nodes) return null
     return parsed
   } catch {
@@ -87,7 +87,7 @@ export function extractMeta(text: string): MermadeMeta | null {
   }
 }
 
-export function applyMeta(nodes: DiagramNode[], groups: DiagramGroup[], meta: MermadeMeta): void {
+export function applyMeta(nodes: DiagramNode[], groups: DiagramGroup[], meta: DrawmarkMeta): void {
   for (const n of nodes) {
     const pos = meta.nodes[n.id]
     if (!pos) continue
@@ -112,7 +112,7 @@ export function applyMeta(nodes: DiagramNode[], groups: DiagramGroup[], meta: Me
   }
 }
 
-export function applyEdgeMeta(edges: { id: string; y?: number; relation?: string; label: string; fromCard?: string; toCard?: string }[], meta: MermadeMeta): void {
+export function applyEdgeMeta(edges: { id: string; y?: number; relation?: string; label: string; fromCard?: string; toCard?: string }[], meta: DrawmarkMeta): void {
   if (!meta.edges) return
   edges.forEach((edge, i) => {
     const pos = meta.edges![edge.id] ?? meta.edges![`e${i + 1}`]
@@ -131,7 +131,7 @@ export function stripFence(source: string): string {
 
 export function bodyLines(source: string): string[] {
   return source
-    .replace(/%% mermade:.*$/m, '')
+    .replace(/%% drawmark:.*$/m, '')
     .replace(/%%.*$/gm, '')
     .split('\n')
     .map((l) => l.trim())

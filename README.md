@@ -1,4 +1,4 @@
-# Mermade
+# Drawmark
 
 Draw class, sequence, ER, state, activity, and architecture diagrams on an infinite canvas. Export is Mermaid markdown you can commit to git.
 
@@ -15,7 +15,7 @@ Open the URL Vite prints. Chromium is best (File System Access API for Open/Save
 
 ## GitHub save (Supabase Auth)
 
-Diagrams stay as `.md` files in a GitHub repo (`mermade/*.md`). Supabase is only the login: **Sign in with GitHub**, then pick the repo. Nothing is stored in a Supabase database.
+Diagrams stay as `.md` files in a GitHub repo (`drawmark/*.md`). Supabase is only the login: **Sign in with GitHub**, then pick the repo. Nothing is stored in a Supabase database.
 
 1. Create a [Supabase](https://supabase.com) project (free tier is enough).
 2. Create a GitHub OAuth App (Settings → Developer settings → OAuth Apps). Homepage and callback:
@@ -39,7 +39,7 @@ VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
 
 The publishable key is public by design (it ships in the browser). Never put a **secret** (`sb_secret_...`) or legacy `service_role` key in this app. Restart `npm run dev` after changing `.env`.
 
-In the editor, click **New** for a blank diagram, or **Diagrams** to open, duplicate, rename, or delete files in `mermade/`. Name the diagram in the top bar; it autosaves after you pause. **Upload from computer** (on the Diagrams page) opens a local `.md` file and stores it in that repo.
+In the editor, click **New** for a blank diagram, or **Diagrams** to open, duplicate, rename, or delete files in `drawmark/`. Name the diagram in the top bar; it autosaves after you pause. **Upload from computer** (on the Diagrams page) opens a local `.md` file and stores it in that repo.
 
 ## Diagram types
 

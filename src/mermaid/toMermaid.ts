@@ -8,7 +8,7 @@ import { fromSequence, toSequence } from './sequence.ts'
 import { fromState, toState } from './state.ts'
 
 export { uniqueId } from './shared.ts'
-export type { MermadeMeta } from './shared.ts'
+export type { DrawmarkMeta } from './shared.ts'
 
 export function toMermaid(graph: SceneGraph, opts?: { clean?: boolean }): string {
   const clean = opts?.clean
