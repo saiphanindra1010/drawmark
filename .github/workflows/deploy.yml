@@ -13,6 +13,9 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+      VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
     steps:
       - uses: actions/checkout@v4
 
@@ -29,27 +32,15 @@ jobs:
           npx tsc --noEmit
           npm test
 
-      - name: Check build env
-        run: |
-          echo "VITE_SUPABASE_URL set: ${{ secrets.VITE_SUPABASE_URL != '' }}"
-          echo "VITE_SUPABASE_PUBLISHABLE_KEY set: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY != '' }}"
-
       - name: Fail fast if env missing
         run: |
-          if [ -z "$VITE_SUPABASE_URL" ]; then
-            echo "::error::VITE_SUPABASE_URL is not visible to this job. Add it under Settings → Secrets and variables → Actions → Repository secrets (exact name, uppercase)."
-            exit 1
-          fi
-          if [ -z "$VITE_SUPABASE_PUBLISHABLE_KEY" ]; then
-            echo "::error::VITE_SUPABASE_PUBLISHABLE_KEY is not visible to this job."
-            exit 1
-          fi
+          echo "VITE_SUPABASE_URL length: ${#VITE_SUPABASE_URL}"
+          echo "VITE_SUPABASE_PUBLISHABLE_KEY length: ${#VITE_SUPABASE_PUBLISHABLE_KEY}"
+          test -n "$VITE_SUPABASE_URL" || { echo "::error::VITE_SUPABASE_URL secret is not visible"; exit 1; }
+          test -n "$VITE_SUPABASE_PUBLISHABLE_KEY" || { echo "::error::VITE_SUPABASE_PUBLISHABLE_KEY secret is not visible"; exit 1; }
 
       - name: Build
         run: npm run build
-        env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
 
       - name: Deploy to Firebase Hosting (live on main, preview channel for PRs)
         uses: FirebaseExtended/action-hosting-deploy@v0
