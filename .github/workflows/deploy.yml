@@ -34,6 +34,17 @@ jobs:
           echo "VITE_SUPABASE_URL set: ${{ secrets.VITE_SUPABASE_URL != '' }}"
           echo "VITE_SUPABASE_PUBLISHABLE_KEY set: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY != '' }}"
 
+      - name: Fail fast if env missing
+        run: |
+          if [ -z "$VITE_SUPABASE_URL" ]; then
+            echo "::error::VITE_SUPABASE_URL is not visible to this job. Add it under Settings → Secrets and variables → Actions → Repository secrets (exact name, uppercase)."
+            exit 1
+          fi
+          if [ -z "$VITE_SUPABASE_PUBLISHABLE_KEY" ]; then
+            echo "::error::VITE_SUPABASE_PUBLISHABLE_KEY is not visible to this job."
+            exit 1
+          fi
+
       - name: Build
         run: npm run build
         env:
