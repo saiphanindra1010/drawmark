@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "deploy": "npm run build && firebase deploy --only hosting"
   },
   "dependencies": {
     "@codemirror/commands": "6.10.3",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@types/rbush": "4.0.0",
+    "firebase-tools": "^15.28.1",
     "typescript": "6.0.3",
     "vite": "8.2.1",
     "vitest": "4.1.11"
