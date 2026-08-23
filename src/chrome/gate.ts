@@ -9,6 +9,7 @@ import {
 } from '../persist/auth.ts'
 import { githubRepo, listGithubRepos, setGithubRepo, type GithubRepo } from '../persist/github.ts'
 import { ICONS } from './icons.ts'
+import { githubStarBadge } from './star.ts'
 
 let root: HTMLElement | null = null
 let requested = false
@@ -115,6 +116,7 @@ function paint(): void {
     }
     card.append(githubBtn('Sign in to save', () => void onSignIn()))
     card.append(textBtn('Not now', hideGate))
+    card.append(foot())
     root.append(card)
     return
   }
@@ -162,7 +164,21 @@ function paint(): void {
   }
   card.append(list)
   card.append(textBtn('Not now', hideGate))
+  card.append(foot())
   root.append(card)
+}
+
+function foot(): HTMLElement {
+  const div = document.createElement('div')
+  div.className = 'gate-foot'
+  const repo = document.createElement('a')
+  repo.className = 'gh-repo'
+  repo.href = 'https://github.com/saiphanindra1010/drawmark'
+  repo.target = '_blank'
+  repo.rel = 'noopener noreferrer'
+  repo.innerHTML = `${ICONS.github}<span>saiphanindra1010/drawmark</span>`
+  div.append(repo, githubStarBadge())
+  return div
 }
 
 function githubBtn(label: string, onClick: () => void): HTMLButtonElement {

@@ -1226,6 +1226,67 @@ canvas {
 
 .gate-skip:hover { color: var(--text); }
 
+.gate-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.gh-repo {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 12px;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.gh-repo span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gh-repo svg { flex: none; }
+.gh-repo:hover { color: var(--text); }
+
+.gh-star {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  padding: 5px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1;
+  text-decoration: none;
+  transition: color 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+
+.gh-star:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+
+.gh-star-count {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.sidebar .gh-star {
+  margin: 8px 2px 2px;
+  align-self: flex-start;
+}
+
 .gate-filter {
   appearance: none;
   border: 1px solid var(--line);

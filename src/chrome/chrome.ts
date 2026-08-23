@@ -57,6 +57,7 @@ import {
   type Tool,
 } from '../scene/types.ts'
 import { ICONS } from './icons.ts'
+import { githubStarBadge } from './star.ts'
 import { inspectorModel, inspectorTitle, inspectorVisible, nodePopOpen } from './inspector.ts'
 import {
   setThemePreference,
@@ -339,6 +340,7 @@ function buildSidebar(rail: HTMLElement, onAction: (action: ChromeAction) => voi
   brand.innerHTML = `<span class="brand-mark"></span><span class="brand-name">Drawmark</span>`
   brand.append(themePicker())
   rail.append(brand)
+  rail.append(githubStarBadge())
   rail.append(sectionLabel('Diagram'))
   rail.append(typeDropdown(onAction))
 
